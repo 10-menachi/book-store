@@ -1,29 +1,58 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import PropTypes from 'prop-types';
-import React from 'react';
-import { v4 } from 'uuid';
+import React, { useState } from 'react';
 
 const AddNewBook = ({ addBook }) => {
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [counter, setCounter] = useState(1); // Initialize the counter
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const title = e.target[0].value;
-    const author = e.target[1].value;
+
     const book = {
-      id: parseInt(v4(), 10),
+      id: counter, // Assign the current counter value as the ID
       category: 'TBC',
       title,
       author,
       progress: '0',
       currentChapter: 'Chapter 1',
-
     };
+
     addBook(book);
+    setTitle('');
+    setAuthor('');
+    setCounter((prevCounter) => prevCounter + 1); // Increment the counter
+    e.target.reset();
   };
+
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const handleAuthorChange = (e) => {
+    setAuthor(e.target.value);
+  };
+
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" className="add-book-title" placeholder="Book title" required />
-      <input type="author" className="add-book-author" placeholder="Book author" required />
-      <button type="submit" className="add-book-button">Add Book</button>
+      <input
+        type="text"
+        className="add-book-title"
+        placeholder="Book title"
+        required
+        onChange={(e) => handleTitleChange(e)}
+      />
+      <input
+        type="text"
+        className="add-book-author"
+        placeholder="Book author"
+        required
+        onChange={(e) => handleAuthorChange(e)}
+      />
+      <button type="submit" className="add-book-button">
+        Add Book
+      </button>
     </form>
   );
 };
