@@ -1,10 +1,18 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Books from './Books';
+import Categories from './Categories';
 import NavBar from './NavBar';
 
 const BookStore = () => (
-  <div>
+  <>
     <NavBar />
-  </div>
+    <Routes>
+      <Route path="/" element={<Books />} />
+      <Route path="/categories" element={<Categories />} />
+    </Routes>
+  </>
 );
 
 export default BookStore;
