@@ -1,17 +1,16 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 const AddNewBook = ({ addBook }) => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
-  const [counter, setCounter] = useState(1); // Initialize the counter
+  const [counter, setCounter] = useState(1);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const book = {
-      id: counter, // Assign the current counter value as the ID
+      id: counter,
       category: 'TBC',
       title,
       author,

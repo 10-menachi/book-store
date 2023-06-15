@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { HiOutlineUserCircle } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
