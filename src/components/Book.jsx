@@ -9,7 +9,7 @@ const Book = ({ book, deleteBook }) => (
       <p className="author">{book.author}</p>
       <div className="interaction">
         <p className="right">Comments</p>
-        <button type="button" className="right" onClick={() => deleteBook(book.id)}>Remove</button>
+        <button type="button" className="right" onClick={() => deleteBook(book.item_id)}>Remove</button>
         <p>Edit</p>
       </div>
     </div>
@@ -18,7 +18,7 @@ const Book = ({ book, deleteBook }) => (
         <div className="oval" />
         <div className="words">
           <p className="perc-complete">
-            {book.progress}
+            0
             %
           </p>
           <p className="completed">Completed</p>
@@ -26,7 +26,7 @@ const Book = ({ book, deleteBook }) => (
       </div>
       <div className="interaction">
         <p className="current-chapter">Current Chapter</p>
-        <p className="lesson">{book.currentChapter}</p>
+        <p className="lesson">Chapter 1</p>
         <button type="button">Update Progress</button>
       </div>
     </div>
@@ -35,12 +35,10 @@ const Book = ({ book, deleteBook }) => (
 
 Book.propTypes = {
   book: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    item_id: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    progress: PropTypes.string.isRequired,
-    currentChapter: PropTypes.string.isRequired,
   }).isRequired,
   deleteBook: PropTypes.func.isRequired,
 };

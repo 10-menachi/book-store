@@ -10,12 +10,10 @@ const AddNewBook = ({ addBook }) => {
     e.preventDefault();
 
     const book = {
-      id: counter,
+      item_id: `item${counter}`,
       category: 'TBC',
       title,
       author,
-      progress: '0',
-      currentChapter: 'Chapter 1',
     };
 
     addBook(book);
