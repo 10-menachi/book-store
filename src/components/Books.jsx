@@ -1,32 +1,25 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBooks } from '../redux/books/booksSlice';
 import AddNewBook from './AddNewBook';
 import Book from './Book';
 
-const Books = ({ books, addBook, deleteBook }) => (
+const Books = () => {
+  const dispatch = useDispatch();
+  const books = useSelector((state) => state.books.books);
 
-  <div className="books-div">
-    {books.length > 0 ? books.map((book) => (
-      <Book
-        book={book}
-        key={book.item_id}
-        deleteBook={deleteBook}
-      />
-    )) : (
-      <p className="no-books">No books yet. Please add a book.</p>
-    )}
-    <hr />
-    <AddNewBook addBook={addBook} />
-  </div>
-);
-Books.propTypes = {
-  books: PropTypes.arrayOf(PropTypes.shape({
-    item_id: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-  })).isRequired,
-  addBook: PropTypes.func.isRequired,
-  deleteBook: PropTypes.func.isRequired,
+  useEffect(() => {
+    dispatch(fetchBooks());
+  });
+
+  return (
+    <div className="books-div">
+      {Object.keys(books).map((book) => (
+        <Book key={book} bookId={book} book={books[book][0]} />
+      ))}
+      <hr />
+      <AddNewBook />
+    </div>
+  );
 };
 export default Books;

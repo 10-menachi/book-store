@@ -257,31 +257,20 @@ hr {
   margin: 0 2rem;
 }
 
-.add-book-title {
-  width: 41.5rem;
-  height: 2.813rem;
-  margin: 1.188rem 2.125rem 0 0;
-  padding: 0.813rem 35.688rem 0.813rem 1.063rem;
+.add-book-title,
+.add-book-author,
+select {
+  padding: 1rem;
   border-radius: 4px;
-  border: solid 1px #e8e8e8;
   background-color: #fff;
-}
-
-.add-book-author {
-  width: 17.813rem;
-  height: 2.813rem;
-  margin: 1.188rem 2.125rem 0;
-  padding: 0.375rem 0.938rem 0.563rem 1rem;
-  border-radius: 4px;
-  border: solid 1px #e8e8e8;
-  background-color: #fff;
+  margin: 2rem;
+  border: 1px solid #e0e0e0;
+  outline: none;
 }
 
 .add-book-button {
-  width: 8.5rem;
-  height: 2.813rem;
-  margin: 1.188rem 2.125rem 0;
-  padding: 0.375rem 0.938rem 0.563rem 1rem;
+  margin: 2rem;
+  padding: 1rem 2rem;
   border-radius: 4px;
   border: solid 1px #e8e8e8;
   background-color: #0290ff;
@@ -302,5 +291,18 @@ form {
   justify-content: center;
   width: 100%;
   padding: 0;
-  margin: 5rem 2rem;
+  flex-wrap: wrap;
+}
+
+option {
+  font-size: 1rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: #0290ff;
+  outline: none;
+  border: none;
 }

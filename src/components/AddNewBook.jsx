@@ -1,25 +1,30 @@
-import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addBookToApi } from '../redux/books/booksSlice';
+import randomIDGenerator from '../utils';
 
-const AddNewBook = ({ addBook }) => {
+const AddNewBook = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
-  const [counter, setCounter] = useState(1);
+  const [category, setCategory] = useState('Action');
+  const dispatch = useDispatch();
+
+  const addBook = (book) => {
+    dispatch(addBookToApi(book));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const book = {
-      item_id: `item${counter}`,
-      category: 'TBC',
+      item_id: `item${randomIDGenerator()}`,
+      category,
       title,
       author,
     };
-
     addBook(book);
     setTitle('');
     setAuthor('');
-    setCounter((prevCounter) => prevCounter + 1); // Increment the counter
     e.target.reset();
   };
 
@@ -32,7 +37,7 @@ const AddNewBook = ({ addBook }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={(e) => handleSubmit(e)}>
       <input
         type="text"
         className="add-book-title"
@@ -47,15 +52,23 @@ const AddNewBook = ({ addBook }) => {
         required
         onChange={(e) => handleAuthorChange(e)}
       />
+      <select
+        className="form-category"
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+      >
+        <option value="Action">Action</option>
+        <option value="Science Fiction">Science Fiction</option>
+        <option value="Series">Series</option>
+        <option value="Drama">Drama</option>
+        <option value="Economy">Economy</option>
+        <option value="Comedy">Comedy</option>
+      </select>
       <button type="submit" className="add-book-button">
         Add Book
       </button>
     </form>
   );
-};
-
-AddNewBook.propTypes = {
-  addBook: PropTypes.func.isRequired,
 };
 
 export default AddNewBook;
